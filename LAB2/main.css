@@ -1,0 +1,47 @@
+/* css 스타일 파트 */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+h1 {
+  font-size: 50px;
+  text-align: center;
+  font-family: 'Nanum Pen Script', cursive;
+  color: darkred;
+}
+div {
+  display: block;
+  border-bottom: 2px solid;
+  border-top: 2px solid;
+  border-color: blue;
+}
+p{}
+  .upper_box{
+    width: 125px;
+    height: 25px;
+    margin: 0px;
+    padding: 20px;
+    border: double 3px blue;
+  }
+  #upper_login_box{
+    border-top: 3px dashed orange;
+    border-bottom: 3px dashed orange;
+  }
+  #upper_signup_box{
+    border-top: 3px dashed orange;
+    border-bottom: 3px dashed orange;
+  }
+input{}
+  .bottom_box{
+    border:2px solid black;
+    margin: 0px;
+  }
+  .signup{
+    background-color: yellowgreen;
+  }
+  .reset{
+    background-color: aqua;
+  }
+  .login{
+    background-color: silver;
+  }
+  .to_signup{
+    background-color: gold;
+  }
