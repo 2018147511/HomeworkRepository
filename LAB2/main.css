@@ -1,5 +1,8 @@
 /* css 스타일 파트 */
+/* 외부 폰트 입력 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+/* 테그 별 스타일 넣기*/
 h1 {
   font-size: 50px;
   text-align: center;
