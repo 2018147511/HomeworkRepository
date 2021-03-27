@@ -22,6 +22,7 @@ p{}
     margin: 0px;
     padding: 20px;
     border: double 3px blue;
+    background: linear-gradient(to right bottom, blue, white 20%, blue);
   }
   #upper_login_box{
     border-top: 3px dashed orange;
