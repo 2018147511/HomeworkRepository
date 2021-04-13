@@ -21,7 +21,7 @@ h1 {
 }
 @keyframes head_animation
 {
-  0%   {left: 1200px;}
+  0%   {left: 1020px;}
   100% {left: 0px;}
 }
 div {
