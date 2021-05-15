@@ -1,12 +1,27 @@
-fetch('products.json').then(function(response) {
-  return response.json();
-}).then(function(json) {
-  let products = json;
-  initialize(products);
-}).catch(function(err) {
-  console.log('There has been a problem during fetch operation: ' + err.message);
-});
+document.addEventListener('DOMContentLoaded', load);
 
+function load(){
+  fetch('products.json').then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    let products = json;
+    initialize(products);
+  }).catch(function(err) {
+    console.log('There has been a problem during fetch operation: ' + err.message);
+  });
+}
+
+
+// 무한 스크롤
+let start_index = 0;
+let end_index = 1;
+let on_infinite = false;
+window.onscroll = () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+    on_infinite = true;
+    load();
+  }
+};
 
 function initialize(products) {
   // grab the UI elements that we need to manipulate
@@ -15,8 +30,6 @@ function initialize(products) {
   const search_button = document.querySelector('button');
   const main = document.querySelector('main');
 
-  let start_index = 0;
-  let end_index = 1;
   // 이전 카테고리 기억
   let lastCategory = category.value;
   // 이전 검색어 기억
@@ -33,12 +46,6 @@ function initialize(products) {
   // then run updateDisplay(), so ALL products are displayed initially.
   finalGroup = products;
   updateDisplay();
-
-  window.onscroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-      addProducts();
-    }
-  };
 
   // Set both to equal an empty array, in time for searches to be run
   categoryGroup = [];
@@ -107,33 +114,29 @@ function initialize(products) {
 
   // 필터에 따라 상품목록 새로 출력
   function updateDisplay() {
-    // 이전 상품목록 다 없애기
-    while (main.firstChild) {
-      main.removeChild(main.firstChild);
+    // 무한 스크롤 중이면 다 지우면 안 됌
+    if(on_infinite){
+      //똑같은 내용을 한 번 더
+      for(let i=0; i<final_group.length; i++){
+        fetchBlob(final_group[i]);
+      }
     }
+    else{
+      // 이전 상품목록 다 없애기
+      while (main.firstChild) {
+        main.removeChild(main.firstChild);
+      }
 
-    // 출력할 물건 없을 시, 메시지 출력
-    if(finalGroup.length === 0) {
-      const message = document.createElement('p');
-      message.textContent = '검색된 상품이 없습니다!';
-      main.appendChild(message);
-    // 있으면 이미지들 출쳑
-    } else {
-        addProducts();
-    }
-  }
-
-
-  function addProducts(){
-    if(start_index < finalGroup.length && end_index < finalGroup.length){
-      fetchBlob(finalGroup[start_index]);
-      fetchBlob(finalGroup[end_index]);
-      start_index = start_index + 2;
-      end_index = end_index + 2;
-    } else{
-      if(start_index < finalGroup.length){
-        fetchBlob(finalGroup[start_index]);
-        start_index = start_index + 2;
+      // 출력할 물건 없을 시, 메시지 출력
+      if(finalGroup.length === 0) {
+        const message = document.createElement('p');
+        message.textContent = '검색된 상품이 없습니다!';
+        main.appendChild(message);
+      // 있으면 이미지들 출쳑
+      } else {
+        for(let i = 0; i < finalGroup.length; i++) {
+          fetchBlob(finalGroup[i]);
+        }
       }
     }
   }
