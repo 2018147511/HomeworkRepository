@@ -8,8 +8,6 @@ fetch('products.json').then(function(response) {
 });
 
 // 무한 스크롤
-let start_index = 0;
-let end_index = 1;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
     addProducts();
@@ -24,6 +22,8 @@ function initialize(products) {
   const search_button = document.querySelector('button');
   const main = document.querySelector('main');
 
+  let start_index = 0;
+  let end_index = 1;
   // 이전 카테고리 기억
   let lastCategory = category.value;
   // 이전 검색어 기억
