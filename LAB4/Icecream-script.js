@@ -197,7 +197,7 @@ function initialize(products) {
     function showMore(){
       section.appendChild(heading);
       section.appendChild(para);
-      more_info.setAttribute('z-index', 0);
+      more_info.setAttribute('z-index', 500);
     }
 
   }
