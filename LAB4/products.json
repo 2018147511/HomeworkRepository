@@ -51,25 +51,25 @@
     "name" : "미니멜츠-바나나스플릿",
     "price" : "1200",
     "image" : "미니멜츠-바나나스플릿.jpg",
-    "type" : "dot"
+    "type" : "dots"
   },
   {
     "name" : "미니멜츠-더블쵸코",
     "price" : "1300",
     "image" : "미니멜츠-더블쵸코.jpg",
-    "type" : "dot"
+    "type" : "dots"
   },
   {
     "name" : "미니멜츠-코튼캔디",
     "price" : "1100",
     "image" : "미니멜츠-코튼캔디.jpg",
-    "type" : "dot"
+    "type" : "dots"
   },
   {
     "name" : "미니멜츠-딸기플레인",
     "price" : "1200",
     "image" : "미니멜츠-딸기플레인.jpg",
-    "type" : "dot"
+    "type" : "dots"
   },
   {
     "name" : "빵또아",
