@@ -13,12 +13,13 @@ function load(){
 
 
 // 무한 스크롤
-let start_index = 0;
-let end_index = 1;
+let infinite_count = 0;
+let infinite_count_max = 5;
 let on_infinite = false;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    if((count < count_max) && document.getElementById('category').value === 'All'){
+    if((infinite_count < infinite_count_max) && document.getElementById('category').value === 'All'){
+      ++infinite_count;
       on_infinite = true;
       load();
     }
