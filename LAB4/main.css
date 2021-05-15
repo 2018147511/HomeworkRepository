@@ -75,6 +75,7 @@ main section {
 	width:25%;
 	font-size : 20px;
 	float: left;
+  z-index: 2000;
 }
 p{}
   .upper_box{
