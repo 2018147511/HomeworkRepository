@@ -145,7 +145,7 @@ function initialize(products) {
     const image = document.createElement('img');
     const more_info = document.createElement('p');
     more_info.classList.add('goods_btn');
-    more_info.textContent= 'Click to see more';
+    more_info.textContent= '더 알아보기';
 
     // 색션에 해당 제품의 타입을 클래스로 지정
     section.setAttribute('class', product.type);
