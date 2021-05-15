@@ -69,6 +69,10 @@ main section {
   flex-direction: row;
   justify-content: space-around;
 }
+.goods_img{
+  position : absolute;
+  z-index: 1;
+}
 .goods_btn{
 	border-radius: 5px;
 	background-color: orange;
@@ -77,10 +81,6 @@ main section {
 	float: left;
   position: absolute;
   z-index: 2000;
-}
-main section > img{
-  position : absolute;
-  z-index: 1;
 }
 p{}
   .upper_box{

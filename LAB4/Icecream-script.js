@@ -162,6 +162,7 @@ function initialize(products) {
     // Set the src of the <img> element to the ObjectURL, and the alt to the product "name" property
     image.src = objectURL;
     image.alt = product.name;
+    image.setAttribute('class', "goods_img");
     // main에 이미지 및 더 보기 기능 넣기
     main.appendChild(section);
     section.appendChild(image);
