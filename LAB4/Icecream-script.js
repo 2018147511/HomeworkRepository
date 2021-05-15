@@ -1,11 +1,15 @@
-fetch('products.json').then(function(response) {
-  return response.json();
-}).then(function(json) {
-  let products = json;
-  initialize(products);
-}).catch(function(err) {
-  console.log('There has been a problem during fetch operation: ' + err.message);
-});
+document.addEventListener('DOMContentLoaded', load);
+
+function load(){
+  fetch('products.json').then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    let products = json;
+    initialize(products);
+  }).catch(function(err) {
+    console.log('There has been a problem during fetch operation: ' + err.message);
+  });
+}
 
 // // 무한 스크롤
 // window.onscroll = () => {
@@ -146,7 +150,6 @@ function initialize(products) {
     const more_info = document.createElement('p');
     more_info.classList.add('goods_btn');
     more_info.textContent= '더 알아보기';
-    more_info.setAttribute('z-index', 3000);
 
     // 색션에 해당 제품의 타입을 클래스로 지정
     section.setAttribute('class', product.type);
@@ -175,7 +178,7 @@ function initialize(products) {
     function showMore(){
       section.appendChild(heading);
       section.appendChild(para);
-      more_info.setAttribute('z-index', 0);
+      more_info.remove();
     }
 
   }
