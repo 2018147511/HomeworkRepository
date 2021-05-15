@@ -78,6 +78,10 @@ main section {
   position: absolute;
   z-index: 2000;
 }
+main section > img{
+  position : absolute;
+  z-index: 1;
+}
 p{}
   .upper_box{
     width: 210px;
