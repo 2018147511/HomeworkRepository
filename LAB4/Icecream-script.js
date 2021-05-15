@@ -22,6 +22,8 @@ function initialize(products) {
   const search_term = document.querySelector('#search_term');
   const search_button = document.querySelector('button');
   const main = document.querySelector('main');
+  let start_index = 0;
+  let end_index = 1;
 
   // 이전 카테고리 기억
   let lastCategory = category.value;
@@ -39,6 +41,12 @@ function initialize(products) {
   // then run updateDisplay(), so ALL products are displayed initially.
   finalGroup = products;
   updateDisplay();
+  // 무한 스크롤
+  window.onscroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+      addProducts();
+    }
+  }
 
   // Set both to equal an empty array, in time for searches to be run
   categoryGroup = [];
@@ -124,7 +132,7 @@ function initialize(products) {
     }
   }
 
-  function displayProducts(){
+  function addProducts(){
     if(start_index < finalGroup.length && end_index < finalGroup.length){
       fetchBlob(finalGroup[start_index]);
       fetchBlob(finalGroup[end_index]);
