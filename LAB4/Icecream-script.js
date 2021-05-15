@@ -129,7 +129,7 @@ function initialize(products) {
     fetch(url).then(function(response) {
         return response.blob();
     }).then(function(blob) {
-      // blob 을 url 객채로 바꿈
+      // blob 을 url 객체로 바꿈
       let objectURL = URL.createObjectURL(blob);
       // 상품 이미지 출력
       showProduct(objectURL, product);
@@ -143,9 +143,9 @@ function initialize(products) {
     const heading = document.createElement('h2');
     const para = document.createElement('p');
     const image = document.createElement('img');
-    const button = document.createElement('p');
-    button.classList.add('goods_btn');
-    button.textContent= 'Click to see more';
+    const more_info = document.createElement('p');
+    more_info.classList.add('goods_btn');
+    more_info.textContent= 'Click to see more';
 
     // 색션에 해당 제품의 타입을 클래스로 지정
     section.setAttribute('class', product.type);
@@ -166,8 +166,8 @@ function initialize(products) {
     // main에 이미지 및 더 보기 기능 넣기
     main.appendChild(section);
     section.appendChild(image);
-    section.appendChild(button);
-    button.onclick = showMore;
+    section.appendChild(more_info);
+    more_info.onclick = showMore;
 
     function showMore(){
       section.appendChild(heading);
