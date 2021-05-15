@@ -7,13 +7,6 @@ fetch('products.json').then(function(response) {
   console.log('There has been a problem during fetch operation: ' + err.message);
 });
 
-// 무한 스크롤
-window.onscroll = () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    addProducts();
-  }
-};
-
 
 function initialize(products) {
   // grab the UI elements that we need to manipulate
@@ -40,6 +33,12 @@ function initialize(products) {
   // then run updateDisplay(), so ALL products are displayed initially.
   finalGroup = products;
   updateDisplay();
+
+  window.onscroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+      addProducts();
+    }
+  };
 
   // Set both to equal an empty array, in time for searches to be run
   categoryGroup = [];
