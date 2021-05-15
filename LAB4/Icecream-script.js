@@ -123,7 +123,7 @@ function initialize(products) {
         addProducts();
     }
   }
-  
+
 
   function addProducts(){
     if(start_index < finalGroup.length && end_index < finalGroup.length){
@@ -137,6 +137,7 @@ function initialize(products) {
         start_index = start_index + 2;
       }
     }
+  }
 
   // 이미지 fetch 및 출력 함수
   function fetchBlob(product) {
