@@ -121,9 +121,9 @@ function initialize(products) {
     // 있으면 이미지들 출쳑
     } else {
         addProducts();
-      }
     }
   }
+  
 
   function addProducts(){
     if(start_index < finalGroup.length && end_index < finalGroup.length){
