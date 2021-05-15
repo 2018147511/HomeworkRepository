@@ -21,9 +21,9 @@ function initialize(products) {
   const search_button = document.querySelector('button');
   const main = document.querySelector('main');
 
-  // keep a record of what the last category and search term entered were
+  // 이전 카테고리 기억
   let lastCategory = category.value;
-  // no search has been made yet
+  // 이전 검색어 기억
   let lastSearch = '';
 
   // these contain the results of filtering by category, and search term
@@ -42,50 +42,34 @@ function initialize(products) {
   categoryGroup = [];
   finalGroup = [];
 
-  // when the search button is clicked, invoke selectCategory() to start
-  // a search running to select the category of products we want to display
-  search_button.onclick = selectCategory;
+  // 버튼 누를 시 카태고리 분류 시작
+  search_button.onclick = setCategory;
 
-  function selectCategory(e) {
-    // Use preventDefault() to stop the form submitting — that would ruin
-    // the experience
-    e.preventDefault();
-
-    // Set these back to empty arrays, to clear out the previous search
+  function setCategory(e) {
     categoryGroup = [];
     finalGroup = [];
 
-    // if the category and search term are the same as they were the last time a
-    // search was run, the results will be the same, so there is no point running
-    // it again — just return out of the function
+    // 지금 필터 내용이 이전 필터와 같으면 아무것도 안함
     if(category.value === lastCategory && search_term.value.trim() === lastSearch) {
       return;
     } else {
-      // update the record of last category and search term
+      // 지금 카테고리 및 검색어 저장
       lastCategory = category.value;
       lastSearch = search_term.value.trim();
-      // In this case we want to select all products, then filter them by the search
-      // term, so we just set categoryGroup to the entire JSON object, then run selectProducts()
+
+      // 카테고리 따라서 출력할 물건 선택
       if(category.value === 'All') {
         categoryGroup = products;
         selectProducts();
-      // If a specific category is chosen, we need to filter out the products not in that
-      // category, then put the remaining products inside categoryGroup, before running
-      // selectProducts()
       } else {
-        // the values in the <option> elements are uppercase, whereas the categories
-        // store in the JSON (under "type") are lowercase. We therefore need to convert
-        // to lower case before we do a comparison
-        let lowerCaseType = category.value.toLowerCase();
+        // 소문자로 변환
+        let lowerCaseCategory = category.value.toLowerCase();
         for(let i = 0; i < products.length ; i++) {
-          // If a product's type property is the same as the chosen category, we want to
-          // display it, so we push it onto the categoryGroup array
-          if(products[i].type === lowerCaseType) {
+          if(products[i].type === lowerCaseCategory) {
             categoryGroup.push(products[i]);
           }
         }
-
-        // Run selectProducts() after the filtering has been done
+        // 해당 카테고리로 검색
         selectProducts();
       }
     }
@@ -94,14 +78,12 @@ function initialize(products) {
   // selectProducts() Takes the group of products selected by selectCategory(), and further
   // filters them by the tiered search term (if one has been entered)
   function selectProducts() {
-    // If no search term has been entered, just make the finalGroup array equal to the categoryGroup
-    // array — we don't want to filter the products further — then run updateDisplay().
+    // 검색 내용에 따라 상품들 출력
     if(search_term.value.trim() === '') {
       finalGroup = categoryGroup;
       updateDisplay();
     } else {
-      // Make sure the search term is converted to lower case before comparison. We've kept the
-      // product names all lower case to keep things simple
+      // 검색어에 따라서 물건 선택
       let lowerCaseSearchTerm = search_term.value.trim().toLowerCase();
       // For each product in categoryGroup, see if the search term is contained inside the product name
       // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
@@ -112,25 +94,25 @@ function initialize(products) {
         }
       }
 
-      // run updateDisplay() after this second round of filtering has been done
+      // 상품들 출력
       updateDisplay();
     }
 
   }
 
-  // start the process of updating the display with the new set of products
+  // 필터에 따라 상품목록 새로 출력
   function updateDisplay() {
-    // remove the previous contents of the <main> element
+    // 이전 상품목록 다 없애기
     while (main.firstChild) {
       main.removeChild(main.firstChild);
     }
 
-    // if no products match the search term, display a "No results to display" message
+    // 출력할 물건 없을 시, 메시지 출력
     if(finalGroup.length === 0) {
-      const para = document.createElement('p');
-      para.textContent = 'No results to display!';
-      main.appendChild(para);
-    // for each product we want to display, pass its product object to fetchBlob()
+      const message = document.createElement('p');
+      message.textContent = '검색된 상품이 없습니다!';
+      main.appendChild(message);
+    // 있으면 이미지들 출쳑
     } else {
       for(let i = 0; i < finalGroup.length; i++) {
         fetchBlob(finalGroup[i]);
@@ -138,26 +120,23 @@ function initialize(products) {
     }
   }
 
-  // fetchBlob uses fetch to retrieve the image for that product, and then sends the
-  // resulting image display URL and product object on to showProduct() to finally
-  // display it
+  // 이미지 fetch 및 출력 함수
   function fetchBlob(product) {
-    // construct the URL path to the image file from the product.image property
+    // 이미지 파일 경로 지정
     let url = 'images/' + product.image;
-    // Use fetch to fetch the image, and convert the resulting response to a blob
-    // Again, if any errors occur we report them in the console.
+
+    // 이미지 fetch - blob 로 바꿈d
     fetch(url).then(function(response) {
         return response.blob();
     }).then(function(blob) {
-      // Convert the blob to an object URL — this is basically an temporary internal URL
-      // that points to an object stored inside the browser
+      // blob 을 url 객채로 바꿈
       let objectURL = URL.createObjectURL(blob);
-      // invoke showProduct
+      // 상품 이미지 출력
       showProduct(objectURL, product);
     });
   }
 
-  // Display a product inside the <main> element
+  // <main>에 상품이미지 출력하는 함수
   function showProduct(objectURL, product) {
     // create <section>, <h2>, <p>, and <img> elements
     const section = document.createElement('section');
