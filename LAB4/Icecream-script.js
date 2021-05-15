@@ -46,6 +46,9 @@ function initialize(products) {
   search_button.onclick = setCategory;
 
   function setCategory(e) {
+
+    e.preventDefault();
+
     categoryGroup = [];
     finalGroup = [];
 
@@ -85,9 +88,6 @@ function initialize(products) {
     } else {
       // 검색어에 따라서 물건 선택
       let lowerCaseSearchTerm = search_term.value.trim().toLowerCase();
-      // For each product in categoryGroup, see if the search term is contained inside the product name
-      // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
-      // onto the finalGroup array
       for(let i = 0; i < categoryGroup.length ; i++) {
         if(categoryGroup[i].name.indexOf(lowerCaseSearchTerm) !== -1) {
           finalGroup.push(categoryGroup[i]);
@@ -144,10 +144,10 @@ function initialize(products) {
     const para = document.createElement('p');
     const image = document.createElement('img');
     const button = document.createElement('btn');
-    button.classList.add('btn');
+    button.classList.add('goods_btn');
     button.textContent= 'Click to see more';
 
-    // give the <section> a classname equal to the product "type" property so it will display the correct icon
+    // 색션에 해당 제품의 타입을 클래스로 지정
     section.setAttribute('class', product.type);
 
     // Give the <h2> textContent equal to the product "name" property, but with the first character
@@ -162,17 +162,16 @@ function initialize(products) {
     // Set the src of the <img> element to the ObjectURL, and the alt to the product "name" property
     image.src = objectURL;
     image.alt = product.name;
-
-    // append the elements to the DOM as appropriate, to add the product to the UI
+    // main에 이미지 및 더 보기 기능 넣기
     main.appendChild(section);
-    /*section.appendChild(para);*/
+    section.appendChild(image);
+    section.appendChild(button);
+    button.onclick = showMore;
+
     function showMore(){
       section.appendChild(heading);
       section.appendChild(para);
     }
-    section.appendChild(image);
-    section.appendChild(button);
-    button.onclick = showMore;
 
   }
 }
