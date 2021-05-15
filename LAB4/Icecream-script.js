@@ -7,12 +7,12 @@ fetch('products.json').then(function(response) {
   console.log('There has been a problem during fetch operation: ' + err.message);
 });
 
-// 무한 스크롤
-window.onscroll = () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    initialize(products);
-  }
-}
+// // 무한 스크롤
+// window.onscroll = () => {
+//   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+//     initialize(products);
+//   }
+// }
 
 function initialize(products) {
   // grab the UI elements that we need to manipulate
