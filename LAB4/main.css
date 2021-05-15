@@ -75,7 +75,6 @@ main section p.goods_btn{
   margin: 0px;
   float: left;
   position: absolute;
-  z-index: 2000;
 }
 main section p.goods_price{
   border-radius: 50%;
