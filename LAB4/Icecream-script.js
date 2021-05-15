@@ -18,8 +18,8 @@ let infinite_count_max = 5;
 let on_infinite = false;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+    ++infinite_count;
     if((infinite_count < infinite_count_max) && document.getElementById('category').value === 'All'){
-      ++infinite_count;
       on_infinite = true;
       load();
     }
@@ -61,9 +61,6 @@ function initialize(products) {
 
     e.preventDefault();
 
-    start_index = 0;
-    end_index = 1;
-
     categoryGroup = [];
     finalGroup = [];
 
@@ -78,6 +75,8 @@ function initialize(products) {
       // 카테고리 따라서 출력할 물건 선택
       if(category.value === 'All') {
         categoryGroup = products;
+        infinite_count = 0;
+        on_infinite = false;
         selectProducts();
       } else {
         // 소문자로 변환
@@ -176,7 +175,7 @@ function initialize(products) {
 
     // Give the <h2> textContent equal to the product "name" property, but with the first character
     // replaced with the uppercase version of the first character
-    heading.textContent = product.name.replace(product.name.charAt(0), product.name.charAt(0).toUpperCase());
+    heading.textContent = product.name;
     heading.classList.add('goods_info');
 
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
