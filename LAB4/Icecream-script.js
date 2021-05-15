@@ -7,15 +7,6 @@ fetch('products.json').then(function(response) {
   console.log('There has been a problem during fetch operation: ' + err.message);
 });
 
-// 무한 스크롤
-let start_index = 0;
-let end_index = 1;
-window.onscroll = () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    displayProducts();
-  }
-}
-
 function initialize(products) {
   // grab the UI elements that we need to manipulate
   const category = document.querySelector('#category');
