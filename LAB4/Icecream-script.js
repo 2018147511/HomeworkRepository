@@ -153,11 +153,13 @@ function initialize(products) {
     // Give the <h2> textContent equal to the product "name" property, but with the first character
     // replaced with the uppercase version of the first character
     heading.textContent = product.name.replace(product.name.charAt(0), product.name.charAt(0).toUpperCase());
+    heading.classList.add('goods_info');
 
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
     // toFixed(2) is used to fix the price at 2 decimal places, so for example 1.40 is displayed
     // as 1.40, not 1.4.
     para.textContent = product.price + "원";
+    para.classList.add('goods_price');
 
     // Set the src of the <img> element to the ObjectURL, and the alt to the product "name" property
     image.src = objectURL;
