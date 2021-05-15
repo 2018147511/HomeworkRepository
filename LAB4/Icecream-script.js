@@ -52,7 +52,7 @@ function initialize(products) {
     e.preventDefault();
 
     start_index = 0;
-    end_index - 1;
+    end_index = 1;
 
     categoryGroup = [];
     finalGroup = [];
