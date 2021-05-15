@@ -1,30 +1,18 @@
-document.addEventListener('DOMContentLoaded', load);
-
-function load(){
-  fetch('products.json').then(function(response) {
-    return response.json();
-  }).then(function(json) {
-    let products = json;
-    initialize(products);
-  }).catch(function(err) {
-    console.log('There has been a problem during fetch operation: ' + err.message);
-  });
-}
-
+fetch('products.json').then(function(response) {
+  return response.json();
+}).then(function(json) {
+  let products = json;
+  initialize(products);
+}).catch(function(err) {
+  console.log('There has been a problem during fetch operation: ' + err.message);
+});
 
 // 무한 스크롤
-let infinite_count = 0;
-let infinite_count_max = 5;
-let on_infinite = false;
-window.onscroll = function(e){
+window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    infinite_count++;
-    if((infinite_count < infinite_count_max) && document.getElementById('category').value === 'All'){
-      on_infinite = true;
-      load();
-    }
+    initialize(products);
   }
-};
+}
 
 function initialize(products) {
   // grab the UI elements that we need to manipulate
@@ -75,8 +63,6 @@ function initialize(products) {
       // 카테고리 따라서 출력할 물건 선택
       if(category.value === 'All') {
         categoryGroup = products;
-        infinite_count = 0;
-        on_infinite = false;
         selectProducts();
       } else {
         // 소문자로 변환
@@ -116,29 +102,20 @@ function initialize(products) {
 
   // 필터에 따라 상품목록 새로 출력
   function updateDisplay() {
-    // 무한 스크롤 중이면 다 지우면 안 됌
-    if(on_infinite){
-      //똑같은 내용을 한 번 더
-      for(let i=0; i<final_group.length; i++){
-        fetchBlob(final_group[i]);
-      }
+    // 이전 상품목록 다 없애기
+    while (main.firstChild) {
+      main.removeChild(main.firstChild);
     }
-    else{
-      // 이전 상품목록 다 없애기
-      while (main.firstChild) {
-        main.removeChild(main.firstChild);
-      }
 
-      // 출력할 물건 없을 시, 메시지 출력
-      if(finalGroup.length === 0) {
-        const message = document.createElement('p');
-        message.textContent = '검색된 상품이 없습니다!';
-        main.appendChild(message);
-      // 있으면 이미지들 출쳑
-      } else {
-        for(let i = 0; i < finalGroup.length; i++) {
-          fetchBlob(finalGroup[i]);
-        }
+    // 출력할 물건 없을 시, 메시지 출력
+    if(finalGroup.length === 0) {
+      const message = document.createElement('p');
+      message.textContent = '검색된 상품이 없습니다!';
+      main.appendChild(message);
+    // 있으면 이미지들 출쳑
+    } else {
+      for(let i = 0; i < finalGroup.length; i++) {
+        fetchBlob(finalGroup[i]);
       }
     }
   }
@@ -175,7 +152,7 @@ function initialize(products) {
 
     // Give the <h2> textContent equal to the product "name" property, but with the first character
     // replaced with the uppercase version of the first character
-    heading.textContent = product.name;
+    heading.textContent = product.name.replace(product.name.charAt(0), product.name.charAt(0).toUpperCase());
     heading.classList.add('goods_info');
 
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
@@ -197,7 +174,7 @@ function initialize(products) {
     function showMore(){
       section.appendChild(heading);
       section.appendChild(para);
-      more_info.setAttribute('z-index', 500);
+      more_info.setAttribute('z-index', 0);
     }
 
   }
