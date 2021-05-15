@@ -178,7 +178,7 @@ function initialize(products) {
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
     // toFixed(2) is used to fix the price at 2 decimal places, so for example 1.40 is displayed
     // as 1.40, not 1.4.
-    para.textContent = '$' + product.price.toFixed(2);
+    para.textContent = product.price + "원";
 
     // Set the src of the <img> element to the ObjectURL, and the alt to the product "name" property
     image.src = objectURL;
