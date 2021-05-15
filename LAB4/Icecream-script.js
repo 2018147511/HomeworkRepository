@@ -9,7 +9,7 @@ fetch('products.json').then(function(response) {
 
 // 무한 스크롤
 let start_index = 0;
-let end_index - 1;
+let end_index = 1;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
     displayProducts();
