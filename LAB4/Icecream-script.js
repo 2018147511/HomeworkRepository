@@ -18,8 +18,10 @@ let end_index = 1;
 let on_infinite = false;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    on_infinite = true;
-    load();
+    if((count < count_max) && document.getElementById('category').value === 'All'){
+      on_infinite = true;
+      load();
+    }
   }
 };
 
