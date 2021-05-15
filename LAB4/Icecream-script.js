@@ -16,9 +16,9 @@ function load(){
 let infinite_count = 0;
 let infinite_count_max = 5;
 let on_infinite = false;
-window.onscroll = () => {
+window.onscroll = function(e){
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    ++infinite_count;
+    infinite_count++;
     if((infinite_count < infinite_count_max) && document.getElementById('category').value === 'All'){
       on_infinite = true;
       load();
