@@ -8,9 +8,11 @@ fetch('products.json').then(function(response) {
 });
 
 // 무한 스크롤
+let start_index = 0;
+let end_index - 1;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    initialize(products);
+    displayProducts();
   }
 }
 
@@ -48,6 +50,9 @@ function initialize(products) {
   function setCategory(e) {
 
     e.preventDefault();
+
+    start_index = 0;
+    end_index - 1;
 
     categoryGroup = [];
     finalGroup = [];
@@ -114,11 +119,23 @@ function initialize(products) {
       main.appendChild(message);
     // 있으면 이미지들 출쳑
     } else {
-      for(let i = 0; i < finalGroup.length; i++) {
-        fetchBlob(finalGroup[i]);
+        addProducts();
       }
     }
   }
+
+  function displayProducts(){
+    if(start_index < finalGroup.length && end_index < finalGroup.length){
+      fetchBlob(finalGroup[start_index]);
+      fetchBlob(finalGroup[end_index]);
+      start_index = start_index + 2;
+      end_index = end_index + 2;
+    } else{
+      if(start_index < finalGroup.length){
+        fetchBlob(finalGroup[start_index]);
+        start_index = start_index + 2;
+      }
+    }
 
   // 이미지 fetch 및 출력 함수
   function fetchBlob(product) {
