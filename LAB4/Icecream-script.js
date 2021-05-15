@@ -7,14 +7,22 @@ fetch('products.json').then(function(response) {
   console.log('There has been a problem during fetch operation: ' + err.message);
 });
 
+// 무한 스크롤
+let start_index = 0;
+let end_index = 1;
+window.onscroll = () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+    addProducts();
+  }
+}
+
+
 function initialize(products) {
   // grab the UI elements that we need to manipulate
   const category = document.querySelector('#category');
   const search_term = document.querySelector('#search_term');
   const search_button = document.querySelector('button');
   const main = document.querySelector('main');
-  let start_index = 0;
-  let end_index = 1;
 
   // 이전 카테고리 기억
   let lastCategory = category.value;
@@ -32,12 +40,6 @@ function initialize(products) {
   // then run updateDisplay(), so ALL products are displayed initially.
   finalGroup = products;
   updateDisplay();
-  // 무한 스크롤
-  window.onscroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-      addProducts();
-    }
-  }
 
   // Set both to equal an empty array, in time for searches to be run
   categoryGroup = [];
