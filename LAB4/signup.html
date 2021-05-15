@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Signup Page</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <!-- 사이트 제목 -->
+    <h1>9POINT8'S INTERNET-PROGRAMMING ICE CREAM STORE</h1>
+
+    <!--위쪽 박스 - 메인페이지, 로그인, 회원가입-->
+    <p class="upper_box">
+      <a href="index.html">메인페이지</a> <a href="login.html">로그인</a> <a class="upper_lined_box">회원가입</a>
+    </p>
+
+    <!--질문들-->
+    <div>
+      <form action="http://example.com" method="post">
+        <p>회원정보 (필수)</p>
+        <p>
+          <label> 이름:
+            <input type="text" name="user_name" autofocus placeholder="이름을 입력하세요" autocomplete="on" required>
+          </label>
+        </p>
+        <p>
+          <label> 생일:
+            <input type="date" name="user_birthday" required>
+          </label>
+        </p>
+        <p>
+          <label> 학년:
+            <input type="number" min="1" max="4" step="1" value = "1" name="user_grade" required>
+          </label>
+        </p>
+        <p>
+          <label> 전화번호:
+            <input type="tel" name="user_tel" pattern="\d{3}-\d{3}-\d{4}" placeholder= "###-###-####" required>
+          </label>
+        </p>
+        <p>
+          <label> 이메일:
+            <input type="email" name="user_email"  placeholder= "이메일을 입력하세요" autocomplete="on" required>
+          </label>
+        </p>
+        <p>혈액형:
+          <label>A형
+            <input type="radio" name="user_blood" value="type_A" required>
+          </label>
+          <label>B형
+            <input type="radio" name="user_blood" value="type_B" required>
+          </label>
+          <label>AB형
+            <input type="radio" name="user_blood" value="type_AB" required>
+          </label>
+          <label>O형
+            <input type="radio" name="user_blood" value="type_O" required>
+          </label>
+        </p>
+        <p>
+          <label> 유저 아이디:
+            <input type="text" name="user_id" autocomplete="on" placeholder="아이디를 입력하세요" required>
+          </label>
+        </p>
+        <p>
+          <label> 비밀번호 :
+            <input type="password" name="user_pw" palceholder="비밀번호를 입력하세요" autocomplete="off" required>
+          </label>
+        </p>
+        <p>
+          <label> 비밀번호 확인:
+            <input type="password" name="user_pw_confirm" palceholder="비밀번호를 입력확인" autocomplete="off" required>
+          </label>
+        </p>
+
+        <!--아래쪽 박스 - 회원가입 및 취소 버튼-->
+        <p>
+          <label>
+            <input class = "signup bottom_box" type="submit" name="signup" value="회원가입">
+          </label>
+          <label>
+            <input class = "reset bottom_box" type="reset" name="reset" value="취소(초기화)">
+          </label>
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

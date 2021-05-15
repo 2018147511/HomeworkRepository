@@ -1,0 +1,98 @@
+{
+  {
+    "name" : "메로나",
+    "price" : "500",
+    "image" : "메로나.jpg",
+    "type" : "bar"
+  },
+  {
+    "name" : "바밤바",
+    "price" : "450",
+    "image" : "바밤바.jpg",
+    "type" : "bar"
+  },
+  {
+    "name" : "와일드바디",
+    "price" : "800",
+    "image" : "와일드바디.jpg",
+    "type" : "bar"
+  },
+  {
+    "name" : "누가바",
+    "price" : "500",
+    "image" : "누가바.jpg",
+    "type" : "bar"
+  },
+  {
+    "name" : "슈팅스타",
+    "price" : "800",
+    "image" : "슈팅스타.jpg",
+    "type" : "cone"
+  },
+  {
+    "name" : "요맘때",
+    "price" : "750",
+    "image" : "요맘때.jpg",
+    "type" : "cone"
+  },
+  {
+    "name" : "슈퍼콘",
+    "price" : "900",
+    "image" : "슈퍼콘.jpg",
+    "type" : "cone"
+  },
+  {
+    "name" : "월드콘",
+    "price" : "800",
+    "image" : "월드콘.jpg",
+    "type" : "cone"
+  },
+  {
+    "name" : "미니멜츠-바나나스플릿",
+    "price" : "1200",
+    "image" : "미니멜츠-바나나스플릿.jpg",
+    "type" : "dot"
+  },
+  {
+    "name" : "미니멜츠-더블쵸코",
+    "price" : "1300",
+    "image" : "미니멜츠-더블쵸코.jpg",
+    "type" : "dot"
+  },
+  {
+    "name" : "미니멜츠-코튼캔디",
+    "price" : "1100",
+    "image" : "미니멜츠-코튼캔디.jpg",
+    "type" : "dot"
+  },
+  {
+    "name" : "미니멜츠-딸기플레인",
+    "price" : "1200",
+    "image" : "미니멜츠-딸기플레인.jpg",
+    "type" : "dot"
+  },
+  {
+    "name" : "빵또아",
+    "price" : "700",
+    "image" : "빵또아.jpg",
+    "type" : "sandwich"
+  },
+  {
+    "name" : "쿠키오",
+    "price" : "650",
+    "image" : "쿠키오.jpg",
+    "type" : "sandwich"
+  },
+  {
+    "name" : "시모나",
+    "price" : "750",
+    "image" : "시모나.jpg",
+    "type" : "sandwich"
+  },
+  {
+    "name" : "아시나요",
+    "price" : "800",
+    "image" : "아시나요.jpg",
+    "type" : "sandwich"
+  }
+}
