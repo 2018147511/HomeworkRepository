@@ -174,7 +174,7 @@ function initialize(products) {
     function showMore(){
       section.appendChild(heading);
       section.appendChild(para);
-      section.removeChild(more_info);
+      more_info.setAttribute('z-index', 0);
     }
 
   }
