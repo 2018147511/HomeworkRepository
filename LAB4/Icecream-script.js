@@ -143,7 +143,7 @@ function initialize(products) {
     const heading = document.createElement('h2');
     const para = document.createElement('p');
     const image = document.createElement('img');
-    const button = document.createElement('btn');
+    const button = document.createElement('p');
     button.classList.add('goods_btn');
     button.textContent= 'Click to see more';
 
