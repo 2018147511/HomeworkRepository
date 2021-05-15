@@ -12,7 +12,7 @@ window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
     addProducts();
   }
-}
+};
 
 
 function initialize(products) {
