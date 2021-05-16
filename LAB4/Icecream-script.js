@@ -17,7 +17,7 @@ let infinite_count_max = 5;
 let on_infinite = false;
 window.onscroll = () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-    if(infinite_count < infinite_count_max && querySelector('#category') === "All"){
+    if(infinite_count < infinite_count_max && document.querySelector('#category').value === "All"){
       infinite_count++;
       on_infinite = true;
       load();
