@@ -55,6 +55,7 @@ function initialize(products) {
   function setCategory(e) {
 
     e.preventDefault();
+    on_infinite = false;
 
     categoryGroup = [];
     finalGroup = [];
