@@ -11,15 +11,22 @@ function load(){
   });
 }
 
-// // 무한 스크롤
-// window.onscroll = () => {
-//   if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
-//     initialize(products);
-//   }
-// }
+// 무한 스크롤
+let infinite_count = 0;
+let infinite_count_max = 5;
+let on_infinite = false;
+window.onscroll = () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+    if(infinite_count < infinite_count_max && querySelector('#category') === "All"){
+      infinite_count++;
+      on_infinite = true;
+      load();
+    }
+  }
+};
 
 function initialize(products) {
-  // grab the UI elements that we need to manipulate
+  // 이미지를 받아오는데 필요한 엘리먼트들 정의
   const category = document.querySelector('#category');
   const search_term = document.querySelector('#search_term');
   const search_button = document.querySelector('button');
@@ -27,18 +34,14 @@ function initialize(products) {
 
   // 이전 카테고리 기억
   let lastCategory = category.value;
-  // 이전 검색어 기억
+  // 이전 검색어 초기화
   let lastSearch = '';
 
-  // these contain the results of filtering by category, and search term
-  // finalGroup will contain the products that need to be displayed after
-  // the searching has been done. Each will be an array containing objects.
-  // Each object will represent a product
+  // 필터를 통해서 걸러진 상품들을 담을 그룹 생성
   let categoryGroup;
   let finalGroup;
 
-  // To start with, set finalGroup to equal the entire products database
-  // then run updateDisplay(), so ALL products are displayed initially.
+  // 처음에는 일단 모든 상품들을 담아서 출력함
   finalGroup = products;
   updateDisplay();
 
@@ -106,20 +109,26 @@ function initialize(products) {
 
   // 필터에 따라 상품목록 새로 출력
   function updateDisplay() {
-    // 이전 상품목록 다 없애기
-    while (main.firstChild) {
-      main.removeChild(main.firstChild);
-    }
-
-    // 출력할 물건 없을 시, 메시지 출력
-    if(finalGroup.length === 0) {
-      const message = document.createElement('p');
-      message.textContent = '검색된 상품이 없습니다!';
-      main.appendChild(message);
-    // 있으면 이미지들 출쳑
-    } else {
+    if(on_infinite){
       for(let i = 0; i < finalGroup.length; i++) {
         fetchBlob(finalGroup[i]);
+      }
+    }
+    else{
+      // 이전 상품목록 다 없애기
+      while (main.firstChild) {
+        main.removeChild(main.firstChild);
+      }
+      // 출력할 물건 없을 시, 메시지 출력
+      if(finalGroup.length === 0) {
+        const message = document.createElement('p');
+        message.textContent = '검색된 상품이 없습니다!';
+        main.appendChild(message);
+      // 있으면 이미지들 출쳑
+      } else {
+        for(let i = 0; i < finalGroup.length; i++) {
+          fetchBlob(finalGroup[i]);
+        }
       }
     }
   }
